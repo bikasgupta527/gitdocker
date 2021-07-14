@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
+import logging
 
 app = Flask(__name__)
 value = {}
@@ -8,9 +9,11 @@ parser = reqparse.RequestParser()
 
 class FlaskAppTest(Resource):
   def get(self):
+    logging.info('This logging response is coming from get')
     return "This response is coming from get"
 
   def post(self):
+    logging.info("This logging response is coming from post")
     parser.add_argument("text")
     args = parser.parse_args()
     val = args["text"]
